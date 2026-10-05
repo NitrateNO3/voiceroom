@@ -5,14 +5,14 @@ import { useSEO } from '../lib/seo'
 const LINES = [
   ['tel:+919876543210', Phone, 'Call', '+91 98765 43210'],
   ['https://wa.me/919876543210', MessageCircle, 'WhatsApp', 'Message us'],
-  ['mailto:hello@miyagi.in', Mail, 'Email', 'hello@miyagi.in'],
+  ['mailto:hello@voiceroom.in', Mail, 'Email', 'hello@voiceroom.in'],
   [null, MapPin, 'Studio', '14 Galleria Market, DLF Phase IV, Gurugram'],
   [null, Clock, 'Hours', 'Mon – Sat · 10 am – 7 pm'],
 ]
 
 // Single-screen contact page: everything fits in the viewport on desktop.
 export default function Contact() {
-  useSEO('Contact', 'Call, WhatsApp, email or visit Miyagi in Gurugram. We reply within a working day.')
+  useSEO('Contact', 'Call, WhatsApp, email or visit Voiceroom in Gurugram. We reply within a working day.')
   return (
     <section className="contact-screen wrap">
       <div className="contact-panel">

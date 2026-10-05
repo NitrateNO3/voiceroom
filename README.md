@@ -1,4 +1,4 @@
-# Miyagi — website prototype
+# Voiceroom — website prototype
 
 A simple 5-page site: **Home, About, Articles (`/learn`), Podcast & Videos (`/podcast`), Contact** — plus individual article pages at `/learn/:slug`. Mobile-first and responsive throughout.
 
@@ -18,4 +18,4 @@ npm run dev      # http://localhost:5173
 | Google Analytics 4 | `src/lib/analytics.js` — page views + events (phone capture, newsletter, plays). Logs to console until `VITE_GA_ID` is set in `.env` | Add the GA4 measurement ID |
 | Google Search Console | Verification meta tag in `index.html`; `public/sitemap.xml` and `robots.txt` | Paste the GSC token, submit the sitemap |
 | Basic SEO | `src/lib/seo.js` — per-page title, description, Open Graph/Twitter tags, canonical URL; Article schema on posts; organisation schema in `index.html` | Real domain; pre-render pages for crawlers |
-| Images | Unsplash stock photos in `public/img/` (free licence) | Swap in Miyagi's own photography with the same file names |
+| Images | Unsplash stock photos in `public/img/` (free licence) | Swap in Voiceroom's own photography with the same file names |

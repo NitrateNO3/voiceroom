@@ -15,7 +15,7 @@ export default function Article() {
       '@context': 'https://schema.org', '@type': 'Article',
       headline: post.title, description: post.excerpt, datePublished: post.date,
       author: { '@type': 'Person', name: post.author },
-      publisher: { '@type': 'Organization', name: 'Miyagi' },
+      publisher: { '@type': 'Organization', name: 'Voiceroom' },
     },
   })
   if (!post) return <NotFound />
@@ -23,7 +23,7 @@ export default function Article() {
   const paras = post.body
     ? post.body.split(/\n\s*\n/)
     : [
-        post.excerpt + ' Every coach at Miyagi has a version of this conversation with a new student in their first week.',
+        post.excerpt + ' Every coach at Voiceroom has a version of this conversation with a new student in their first week.',
         'The research is surprisingly consistent: the physical signs of anxiety and excitement are almost identical. A faster heart rate, shallow breathing, a rush of energy. What changes is the label we put on it — and that label changes how we perform.',
         'So we don’t tell students to calm down. We tell them to say, out loud, “I’m excited.” It sounds silly. It works more often than it doesn’t.',
         'Then we give the energy somewhere to go: a strong first line memorised word-for-word, a planned pause after it, and one person in the room to talk to first. Structure is what turns adrenaline into presence.',

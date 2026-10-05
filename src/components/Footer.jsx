@@ -7,7 +7,7 @@ const SOCIALS = [['Instagram', 'Ig'], ['YouTube', 'Yt'], ['LinkedIn', 'in'], ['S
 function Base() {
   return (
     <div className="footer-base">
-      <span>© 2026 Miyagi Learning Pvt. Ltd. · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+      <span>© 2026 Voiceroom Learning Pvt. Ltd. · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
       <div className="socials">
         {SOCIALS.map(([label, s]) => <a key={s} href="#" aria-label={label}>{s}</a>)}
       </div>
@@ -52,7 +52,7 @@ export default function Footer({ slim }) {
             <h4>Talk to us</h4>
             <ul>
               <li><a href="tel:+919876543210">+91 98765 43210</a></li>
-              <li><a href="mailto:hello@miyagi.in">hello@miyagi.in</a></li>
+              <li><a href="mailto:hello@voiceroom.in">hello@voiceroom.in</a></li>
               <li><a href="https://wa.me/919876543210">WhatsApp</a></li>
             </ul>
           </div>

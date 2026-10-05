@@ -125,7 +125,7 @@ function Podcast() {
 }
 
 export default function PodcastPage() {
-  useSEO('Podcast & Videos', 'The Speak Easy podcast and Miyagi YouTube videos: conversations and drills on public speaking and communication.')
+  useSEO('Podcast & Videos', 'The Speak Easy podcast and Voiceroom YouTube videos: conversations and drills on public speaking and communication.')
   return (
     <>
       <PageHead
@@ -142,7 +142,7 @@ export default function PodcastPage() {
       </section>
       <section className="section wrap" id="videos">
         <div className="section-head" style={{ marginBottom: 32 }}>
-          <div><span className="label label-dot">Miyagi on YouTube</span><h2 style={{ marginTop: 6 }}>Watch <em>&amp; practise.</em></h2></div>
+          <div><span className="label label-dot">Voiceroom on YouTube</span><h2 style={{ marginTop: 6 }}>Watch <em>&amp; practise.</em></h2></div>
         </div>
         <Videos />
       </section>

@@ -53,11 +53,11 @@ export const POSTS = [
 // `youtubeId` (the part after watch?v=) below.
 export const MEDIA = {
   spotifyShowId: '',
-  youtubeChannel: 'https://www.youtube.com/@miyagi',
+  youtubeChannel: 'https://www.youtube.com/@voiceroom',
   platforms: {
     Spotify: 'https://open.spotify.com/',
     'Apple Podcasts': 'https://podcasts.apple.com/',
-    YouTube: 'https://www.youtube.com/@miyagi',
+    YouTube: 'https://www.youtube.com/@voiceroom',
   },
 }
 

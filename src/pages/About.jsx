@@ -7,13 +7,13 @@ import Reveal from '../components/Reveal'
 import { useSEO } from '../lib/seo'
 
 export default function About() {
-  useSEO('About', 'Why Miyagi exists, how we teach, and where we’re going.')
+  useSEO('About', 'Why Voiceroom exists, how we teach, and where we’re going.')
   return (
     <>
       <PageHead
-        label="About Miyagi"
-        title={<>Wax on. <em>Speak</em> up.</>}
-        lede="We named ourselves after the patient teacher who made his student practise the small things until the big things took care of themselves. That’s still the method."
+        label="About Voiceroom"
+        title={<>Every voice needs <em>a room.</em></>}
+        lede="We named ourselves for the two things every speaker needs: a voice they trust, and a room that lets them use it. Everything we teach starts there."
         img="/img/graduation.jpg"
       />
 
@@ -22,7 +22,7 @@ export default function About() {
         <Reveal>
           <p className="big-quote">Confidence isn’t a personality. It’s a <em>skill</em> — and skills can be taught, drilled and kept.</p>
           <p className="lede" style={{ marginTop: 32 }}>
-            Most students are told to “be more confident” and never shown how. Miyagi started in 2019 as a weekend debate
+            Most students are told to “be more confident” and never shown how. Voiceroom started in 2019 as a weekend debate
             club in a Delhi living room. Today we coach in 40+ schools and colleges, run a city-wide debate league and train
             teams at companies who want their people to speak with clarity.
           </p>
@@ -75,7 +75,7 @@ export default function About() {
             <span className="label">The team</span>
             <h2>The people <em>behind the mic.</em></h2>
           </div>
-          <p className="muted" style={{ maxWidth: '40ch' }}>National debaters, theatre actors, teachers and recruiters. Every coach is trained in the Miyagi method before they lead a batch.</p>
+          <p className="muted" style={{ maxWidth: '40ch' }}>National debaters, theatre actors, teachers and recruiters. Every coach is trained in the Voiceroom method before they lead a batch.</p>
         </div>
         <div className="team-grid">
           {TEAM.map((m, i) => (

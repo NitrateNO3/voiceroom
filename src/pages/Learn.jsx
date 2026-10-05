@@ -45,7 +45,7 @@ function Articles() {
 }
 
 export default function Learn() {
-  useSEO('Articles', 'Free articles on public speaking, debating, interviews and confident communication from Miyagi coaches.')
+  useSEO('Articles', 'Free articles on public speaking, debating, interviews and confident communication from Voiceroom coaches.')
   return (
     <>
       <PageHead

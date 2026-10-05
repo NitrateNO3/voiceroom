@@ -8,13 +8,13 @@ import { track } from '../lib/analytics'
 // Brief: "collect phone number as and when person lands on website".
 // Slides in a few seconds after landing (not instantly — less hostile, better
 // conversion). If dismissed, collapses to a small pill so it's still reachable.
-// Any button can open it with: window.dispatchEvent(new Event('miyagi:callback'))
-const KEY = 'miyagi-capture'
+// Any button can open it with: window.dispatchEvent(new Event('voiceroom:callback'))
+const KEY = 'voiceroom-capture'
 const DELAY_MS = 3500
 
 const read = () => { try { return localStorage.getItem(KEY) } catch { return null } }
 const write = (v) => { try { localStorage.setItem(KEY, v) } catch {} }
-export const openCallback = () => window.dispatchEvent(new Event('miyagi:callback'))
+export const openCallback = () => window.dispatchEvent(new Event('voiceroom:callback'))
 
 // The phone form itself — used in the popup and inline on the home page.
 export function PhoneForm({ source, onDone, dark }) {
@@ -40,7 +40,7 @@ export function PhoneForm({ source, onDone, dark }) {
       <div className="success-box" style={{ padding: 8 }}>
         <div className="tick"><Check /></div>
         <h3>Thanks{name ? `, ${name.split(' ')[0]}` : ''}!</h3>
-        <p className={dark ? '' : 'muted'} style={{ margin: '8px 0 0' }}>A Miyagi coach will call you within one working day.</p>
+        <p className={dark ? '' : 'muted'} style={{ margin: '8px 0 0' }}>A Voiceroom coach will call you within one working day.</p>
       </div>
     )
 
@@ -60,7 +60,7 @@ export function PhoneForm({ source, onDone, dark }) {
       </div>
       {err && <p className="err">{err}</p>}
       <button className="btn btn-ember btn-block" style={{ marginTop: 12 }}>Call me back <ArrowRight /></button>
-      <p className="capture-fine">We’ll only call about Miyagi. No spam, ever.</p>
+      <p className="capture-fine">We’ll only call about Voiceroom. No spam, ever.</p>
     </form>
   )
 }
@@ -71,12 +71,12 @@ export default function PhoneCapture() {
   useEffect(() => {
     const saved = read()
     const open = () => { setMode('open'); track('phone_capture_shown', { trigger: 'button' }) }
-    window.addEventListener('miyagi:callback', open)
+    window.addEventListener('voiceroom:callback', open)
     let t
     if (saved === 'done') setMode('done')
     else if (saved === 'dismissed') setMode('pill')
     else t = setTimeout(() => { setMode('open'); track('phone_capture_shown', { trigger: 'landing' }) }, DELAY_MS)
-    return () => { clearTimeout(t); window.removeEventListener('miyagi:callback', open) }
+    return () => { clearTimeout(t); window.removeEventListener('voiceroom:callback', open) }
   }, [])
 
   const dismiss = () => { if (read() !== 'done') { write('dismissed'); setMode('pill') } else setMode('done') }

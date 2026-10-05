@@ -2,7 +2,7 @@
 // emails, contact messages). In production, post these to a CRM / Google Sheet.
 import { useSyncExternalStore } from 'react'
 
-const KEY = 'miyagi-leads-v1'
+const KEY = 'voiceroom-leads-v1'
 const listeners = new Set()
 
 let state = (() => {

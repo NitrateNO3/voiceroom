@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://miyagi.in/sitemap.xml
+Sitemap: https://voiceroom.in/sitemap.xml

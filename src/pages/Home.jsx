@@ -23,7 +23,7 @@ const QUOTES = [
 ]
 
 export default function Home() {
-  useSEO(null, 'Miyagi helps students and professionals find their voice — free articles, a weekly podcast and videos on public speaking, debating and confident communication.')
+  useSEO(null, 'Voiceroom helps students and professionals find their voice — free articles, a weekly podcast and videos on public speaking, debating and confident communication.')
   const [qi, setQi] = useState(0)
   const spot = useSpotlight()
   const ep = EPISODES[0]
@@ -100,7 +100,7 @@ export default function Home() {
 
       {/* ── Manifesto + numbers ── */}
       <section className="section wrap" id="manifesto">
-        <span className="label label-dot">Why Miyagi</span>
+        <span className="label label-dot">Why Voiceroom</span>
         <ScrollWords
           className="manifesto"
           text="Every confident speaker you admire was once a nervous kid with shaky hands and a dry mouth. The difference was never *talent. It was *practice, a coach who cared, and a room that let them *try."
@@ -117,8 +117,8 @@ export default function Home() {
       <section className="section wrap" style={{ paddingTop: 0 }}>
         <div className="section-head">
           <div>
-            <span className="label">The Miyagi method</span>
-            <h2>Wax on. <em>Speak up.</em></h2>
+            <span className="label">The Voiceroom method</span>
+            <h2>Small reps. <em>Big rooms.</em></h2>
           </div>
           <Link to="/about" className="link-arrow">Our story <ArrowUpRight /></Link>
         </div>
@@ -241,7 +241,7 @@ export default function Home() {
           <div>
             <span className="eyebrow"><i />Free 10-minute call</span>
             <h2>Not sure where <em>to start?</em></h2>
-            <p className="lede">Leave your number. A Miyagi coach will call you back within a working day and suggest the right next step — for you or your child.</p>
+            <p className="lede">Leave your number. A Voiceroom coach will call you back within a working day and suggest the right next step — for you or your child.</p>
           </div>
           <div className="final-form">
             <PhoneForm source="Home — final CTA" dark />

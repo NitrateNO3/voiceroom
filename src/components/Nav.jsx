@@ -13,9 +13,9 @@ export const LINKS = [
 
 export function Logo({ to = '/' }) {
   return (
-    <Link to={to} className="logo" aria-label="Miyagi home">
-      <span className="seal">m</span>
-      miyagi
+    <Link to={to} className="logo" aria-label="Voiceroom home">
+      <span className="seal">v</span>
+      voiceroom
     </Link>
   )
 }
@@ -71,7 +71,7 @@ export default function Nav() {
       {open && (
         <div className="drawer" role="dialog" aria-modal="true">
           <div className="drawer-top">
-            <Link to="/" className="logo" style={{ color: 'var(--paper)' }}><span className="seal">m</span>miyagi</Link>
+            <Link to="/" className="logo" style={{ color: 'var(--paper)' }}><span className="seal">v</span>voiceroom</Link>
             <button className="burger" onClick={() => setOpen(false)} aria-label="Close menu"><X /></button>
           </div>
           <nav>

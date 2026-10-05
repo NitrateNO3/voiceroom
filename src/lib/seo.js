@@ -3,8 +3,8 @@ import { useEffect } from 'react'
 // Basic SEO: per-page <title>, meta description, Open Graph / Twitter tags,
 // canonical URL and optional JSON-LD. For production, pre-render these pages
 // (e.g. vite-plugin-ssg) so crawlers see the tags without running JavaScript.
-export const SITE_URL = 'https://miyagi.in'
-const DEFAULT_TITLE = 'Miyagi — Find your voice'
+export const SITE_URL = 'https://voiceroom.in'
+const DEFAULT_TITLE = 'Voiceroom — Find your voice'
 const DEFAULT_IMAGE = '/img/hero-stage.jpg'
 
 function meta(attr, key, value) {
@@ -20,7 +20,7 @@ function meta(attr, key, value) {
 export function useSEO(title, description, { image = DEFAULT_IMAGE, type = 'website', jsonLd } = {}) {
   const ld = jsonLd ? JSON.stringify(jsonLd) : ''
   useEffect(() => {
-    const full = title ? `${title} — Miyagi` : DEFAULT_TITLE
+    const full = title ? `${title} — Voiceroom` : DEFAULT_TITLE
     const url = SITE_URL + window.location.pathname
     document.title = full
     if (description) {
