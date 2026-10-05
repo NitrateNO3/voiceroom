@@ -14,11 +14,12 @@ import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
 function SiteLayout() {
+  const { pathname } = useLocation()
   return (
     <>
       <Nav />
       <main><Outlet /></main>
-      <Footer />
+      <Footer slim={pathname === '/contact'} />
     </>
   )
 }

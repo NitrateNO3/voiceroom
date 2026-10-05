@@ -4,6 +4,7 @@ import { Menu, X, Phone } from 'lucide-react'
 import { openCallback } from './PhoneCapture'
 
 export const LINKS = [
+  ['/', 'Home'],
   ['/about', 'About'],
   ['/learn', 'Articles'],
   ['/podcast', 'Podcast & Videos'],
@@ -59,7 +60,7 @@ export default function Nav() {
         <div className="wrap nav-inner">
           <Logo />
           <nav className="nav-links" aria-label="Main">
-            {LINKS.map(([to, label]) => <NavLink key={to} to={to}>{label}</NavLink>)}
+            {LINKS.map(([to, label]) => <NavLink key={to} to={to} end={to === '/'}>{label}</NavLink>)}
           </nav>
           <div className="nav-cta">
             <button className="btn btn-sm btn-ember" onClick={openCallback}><Phone /> Free callback</button>
@@ -74,7 +75,7 @@ export default function Nav() {
             <button className="burger" onClick={() => setOpen(false)} aria-label="Close menu"><X /></button>
           </div>
           <nav>
-            {[['/', 'Home'], ...LINKS].map(([to, label], i) => (
+            {LINKS.map(([to, label], i) => (
               <Link key={to} to={to} style={{ animationDelay: `${60 + i * 45}ms` }}>{label}<small>0{i + 1}</small></Link>
             ))}
           </nav>

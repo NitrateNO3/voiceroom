@@ -16,28 +16,20 @@ export default function Newsletter({ source = 'Footer' }) {
   }
 
   return (
-    <section className="dark section-tight news-section" id="newsletter">
-      <div className="wrap newsletter">
-        <div>
-          <span className="label label-dot">The Sunday Letter</span>
-          <h2 style={{ marginTop: 18 }}>One idea a week to <em>speak better.</em></h2>
-        </div>
-        <div>
-          <p className="muted" style={{ marginBottom: 20 }}>
-            Short drills, new articles and podcast drops, every Sunday morning. Free, no spam, unsubscribe anytime.
-          </p>
-          {done ? (
-            <p style={{ display: 'flex', gap: 10, alignItems: 'center', fontWeight: 600 }}>
-              <Check size={20} color="var(--sun)" /> You’re in. First letter lands Sunday.
-            </p>
-          ) : (
-            <form className="news-form" onSubmit={submit}>
-              <input type="email" required placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="Email address" />
-              <button className="btn btn-sm" type="submit">Subscribe <ArrowRight /></button>
-            </form>
-          )}
-        </div>
+    <div className="news-card" id="newsletter">
+      <div>
+        <span className="label label-dot">The Sunday Letter</span>
+        <h3>One idea a week to <em>speak better.</em></h3>
+        <p>Short drills, new articles and podcast drops. Free, no spam.</p>
       </div>
-    </section>
+      {done ? (
+        <p className="news-done"><Check size={20} color="var(--gold)" /> You’re in. First letter lands Sunday.</p>
+      ) : (
+        <form className="news-form" onSubmit={submit}>
+          <input type="email" required placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="Email address" />
+          <button className="btn btn-sm btn-ember" type="submit">Subscribe <ArrowRight /></button>
+        </form>
+      )}
+    </div>
   )
 }
