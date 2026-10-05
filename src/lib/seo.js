@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 // canonical URL and optional JSON-LD. For production, pre-render these pages
 // (e.g. vite-plugin-ssg) so crawlers see the tags without running JavaScript.
 export const SITE_URL = 'https://voiceroom.in'
-const DEFAULT_TITLE = 'Voiceroom — Find your voice'
-const DEFAULT_IMAGE = '/img/hero-stage.jpg'
+const DEFAULT_TITLE = 'Voiceroom · Public speaking classes in Gurugram'
+const DEFAULT_IMAGE = '/img/discussion.jpg'
 
 function meta(attr, key, value) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`)
@@ -20,7 +20,7 @@ function meta(attr, key, value) {
 export function useSEO(title, description, { image = DEFAULT_IMAGE, type = 'website', jsonLd } = {}) {
   const ld = jsonLd ? JSON.stringify(jsonLd) : ''
   useEffect(() => {
-    const full = title ? `${title} — Voiceroom` : DEFAULT_TITLE
+    const full = title ? `${title} · Voiceroom` : DEFAULT_TITLE
     const url = SITE_URL + window.location.pathname
     document.title = full
     if (description) {

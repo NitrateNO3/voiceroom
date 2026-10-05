@@ -1,105 +1,79 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Phone } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { openCallback } from '../components/PhoneCapture'
-import { TEAM } from '../data'
 import PageHead from '../components/PageHead'
-import Reveal from '../components/Reveal'
+import { TEAM } from '../data'
 import { useSEO } from '../lib/seo'
 
+const YEARS = [
+  ['2019', 'Started as a Saturday debate club for nine students in our founder’s living room.'],
+  ['2021', 'Moved classes online during the lockdowns and kept them there for students outside Delhi NCR.'],
+  ['2023', 'Began running weekly clubs inside a handful of schools.'],
+  ['2025', 'Opened our own room in DLF Phase IV, Gurugram, and started The Speak Easy podcast.'],
+]
+
 export default function About() {
-  useSEO('About', 'Why Voiceroom exists, how we teach, and where we’re going.')
+  useSEO('About', 'Voiceroom is a public speaking school in Gurugram. How we started, how we teach and who teaches.')
   return (
     <>
       <PageHead
-        label="About Voiceroom"
-        title={<>Every voice needs <em>a room.</em></>}
-        lede="We named ourselves for the two things every speaker needs: a voice they trust, and a room that lets them use it. Everything we teach starts there."
-        img="/img/graduation.jpg"
+        title="About Voiceroom"
+        lede="We’re a small public speaking school in Gurugram. We teach school kids, college students and working adults to stand up and say what they mean."
       />
 
-      <section className="wrap two-col" style={{ paddingBottom: 'clamp(64px, 9vw, 120px)' }}>
-        <span className="label label-dot">Why we exist</span>
-        <Reveal>
-          <p className="big-quote">Confidence isn’t a personality. It’s a <em>skill</em> — and skills can be taught, drilled and kept.</p>
-          <p className="lede" style={{ marginTop: 32 }}>
-            Most students are told to “be more confident” and never shown how. Voiceroom started in 2019 as a weekend debate
-            club in a Delhi living room. Today we coach in 40+ schools and colleges, run a city-wide debate league and train
-            teams at companies who want their people to speak with clarity.
-          </p>
-        </Reveal>
-      </section>
-
       <section className="wrap">
-        <div className="photo-strip">
-          {['discussion', 'classroom', 'confetti'].map((n, i) => (
-            <Reveal key={n} delay={i * 90}><img src={`/img/${n}.jpg`} alt="" loading="lazy" /></Reveal>
+        <div className="wide-photo"><img src="/img/college-audience.jpg" alt="Students listening to a talk" /></div>
+      </section>
+
+      <section className="section wrap two-col">
+        <h2>Why we started</h2>
+        <div className="prose">
+          <p>
+            Most people are told to “be more confident” and never shown how. Confidence on a stage is mostly
+            practice: you get up, you talk, someone tells you one useful thing, and you do it again next week.
+          </p>
+          <p>
+            That’s the whole idea behind Voiceroom. We keep batches to twelve so everyone gets time at the
+            front of the room, and we spend more of each class speaking than listening.
+          </p>
+        </div>
+      </section>
+
+      <section className="wrap two-col" style={{ paddingBottom: 'clamp(56px, 8vw, 104px)' }}>
+        <h2>How we teach</h2>
+        <div className="prose">
+          <p><b>Speaking first.</b> Every class puts people on their feet in the first ten minutes. Theory comes after, and only as much as you need.</p>
+          <p><b>Small rooms.</b> Twelve people at most, so your coach knows your name and remembers what you said last week.</p>
+          <p><b>Specific feedback.</b> Not “good job”. One thing to keep, one thing to change, written down every time.</p>
+        </div>
+      </section>
+
+      <section className="wrap two-col" style={{ paddingBottom: 'clamp(56px, 8vw, 104px)' }}>
+        <h2>So far</h2>
+        <ul className="years">
+          {YEARS.map(([y, t]) => <li key={y}><b>{y}</b><p>{t}</p></li>)}
+        </ul>
+      </section>
+
+      <section className="wrap two-col" style={{ paddingBottom: 'clamp(56px, 8vw, 104px)' }}>
+        <h2>Who teaches</h2>
+        <ul className="coaches">
+          {TEAM.map((m) => (
+            <li key={m.name}>
+              <b>{m.name}</b>
+              <span>{m.role}</span>
+              <p>{m.note}</p>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
-      <section className="section wrap">
-        <div className="values">
-          {[
-            ['Reps over theory', 'Every session puts students on their feet within the first ten minutes. You learn to speak by speaking.'],
-            ['Small rooms', 'Batches of twelve, max. Every student gets heard, recorded and coached by name.'],
-            ['Kind, specific feedback', 'Not “good job”. One thing to keep, one thing to change — every time.'],
-          ].map(([t, d], i) => (
-            <Reveal key={t} delay={i * 80}>
-              <span className="n">0{i + 1}</span>
-              <h3>{t}</h3>
-              <p>{d}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="dark section">
-        <div className="wrap two-col">
-          <div>
-            <span className="label">The story so far</span>
-            <h2 style={{ marginTop: 18 }}>From a living room to <em>a league.</em></h2>
-          </div>
-          <ol className="timeline">
-            <li><b>2019</b><p>Weekend debate club with 9 students in Aanya’s living room.</p></li>
-            <li><b>2021</b><p>Went online through the pandemic; reached students in 14 cities.</p></li>
-            <li><b>2023</b><p>First school partnerships. Launched the Inter-School Debate League.</p></li>
-            <li><b>2025</b><p>Opened the Gurugram studio. Launched The Speak Easy podcast.</p></li>
-            <li><b>2026</b><p>12,000+ students coached. A free library of articles, episodes and videos.</p></li>
-          </ol>
-        </div>
-      </section>
-
-      <section className="section wrap">
-        <div className="section-head">
-          <div>
-            <span className="label">The team</span>
-            <h2>The people <em>behind the mic.</em></h2>
-          </div>
-          <p className="muted" style={{ maxWidth: '40ch' }}>National debaters, theatre actors, teachers and recruiters. Every coach is trained in the Voiceroom method before they lead a batch.</p>
-        </div>
-        <div className="team-grid">
-          {TEAM.map((m, i) => (
-            <Reveal key={m.name} className="member" delay={(i % 3) * 80}>
-              <div className="member-photo">
-                <img src={m.img} alt={m.name} loading="lazy" />
-                <p className="note">{m.note}</p>
-              </div>
-              <h3>{m.name}</h3>
-              <span className="label">{m.role}</span>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="dark section">
-        <div className="wrap section-head" style={{ marginBottom: 0 }}>
-          <div>
-            <span className="label">Talk to a coach</span>
-            <h2>Ready when <em>you are.</em></h2>
-          </div>
+      <section className="wrap" style={{ paddingBottom: 'clamp(56px, 8vw, 104px)' }}>
+        <div className="note-box">
+          <h2>Have a question about a batch?</h2>
           <div className="hero-ctas" style={{ marginTop: 0 }}>
-            <button className="btn btn-ember btn-lg" onClick={openCallback}><Phone /> Get a free callback</button>
-            <Link to="/contact" className="btn btn-glass btn-lg">Contact us <ArrowRight /></Link>
+            <button className="btn" onClick={openCallback}><Phone /> Ask us to call you</button>
+            <Link to="/contact" className="btn btn-outline">Contact us</Link>
           </div>
         </div>
       </section>

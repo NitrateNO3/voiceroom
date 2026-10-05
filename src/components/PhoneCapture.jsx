@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { X, Phone, Check, ArrowRight } from 'lucide-react'
-import Art from './Art'
+import { X, Phone, Check } from 'lucide-react'
 import { addLead } from '../lib/store'
 import { track } from '../lib/analytics'
 
@@ -17,7 +16,7 @@ const write = (v) => { try { localStorage.setItem(KEY, v) } catch {} }
 export const openCallback = () => window.dispatchEvent(new Event('voiceroom:callback'))
 
 // The phone form itself — used in the popup and inline on the home page.
-export function PhoneForm({ source, onDone, dark }) {
+export function PhoneForm({ source, onDone, cta = 'Call me back' }) {
   const { pathname } = useLocation()
   const [phone, setPhone] = useState('')
   const [name, setName] = useState('')
@@ -40,12 +39,12 @@ export function PhoneForm({ source, onDone, dark }) {
       <div className="success-box" style={{ padding: 8 }}>
         <div className="tick"><Check /></div>
         <h3>Thanks{name ? `, ${name.split(' ')[0]}` : ''}!</h3>
-        <p className={dark ? '' : 'muted'} style={{ margin: '8px 0 0' }}>A Voiceroom coach will call you within one working day.</p>
+        <p className="muted" style={{ margin: '6px 0 0' }}>We’ll call you within one working day, usually sooner.</p>
       </div>
     )
 
   return (
-    <form onSubmit={submit} className={`phone-form ${dark ? 'on-dark' : ''}`}>
+    <form onSubmit={submit} className="phone-form">
       <div className="field">
         <input placeholder="Your name (optional)" value={name} onChange={(e) => setName(e.target.value)} aria-label="Name" />
       </div>
@@ -59,8 +58,8 @@ export function PhoneForm({ source, onDone, dark }) {
         />
       </div>
       {err && <p className="err">{err}</p>}
-      <button className="btn btn-ember btn-block" style={{ marginTop: 12 }}>Call me back <ArrowRight /></button>
-      <p className="capture-fine">We’ll only call about Voiceroom. No spam, ever.</p>
+      <button className="btn btn-block" style={{ marginTop: 12 }}>{cta}</button>
+      <p className="fine">We only use your number to call you back about classes.</p>
     </form>
   )
 }
@@ -84,7 +83,7 @@ export default function PhoneCapture() {
   if (mode === 'pill')
     return (
       <button className="capture-pill" onClick={() => setMode('open')}>
-        <i><Phone /></i> Get a free callback
+        <Phone /> Call me back
       </button>
     )
 
@@ -93,13 +92,9 @@ export default function PhoneCapture() {
   return (
     <aside className="capture" aria-label="Request a callback">
       <button className="capture-close" onClick={dismiss} aria-label="Close"><X /></button>
-      <Art tone="ember" src="/img/mic-blue.jpg" shade="bottom" className="capture-art">
-        <span className="display">Not sure where<br /><em>to start?</em></span>
-      </Art>
-      <div className="capture-body">
-        <p>Leave your number — a coach will call to suggest the right next step for you or your child. Takes 5 minutes.</p>
-        <PhoneForm source="Welcome popup" onDone={() => setTimeout(() => setMode('done'), 3200)} />
-      </div>
+      <h3>Want us to call you?</h3>
+      <p>Leave your number and a coach will ring you to talk about classes for you or your child. No obligation.</p>
+      <PhoneForm source="Welcome popup" onDone={() => setTimeout(() => setMode('done'), 3200)} />
     </aside>
   )
 }

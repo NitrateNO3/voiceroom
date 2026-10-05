@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { addLead } from '../lib/store'
 import { track } from '../lib/analytics'
 
@@ -32,7 +32,7 @@ export default function EnquiryForm({ program, title = 'Enquire', compact }) {
       </p>
       <div className="seg">
         {['Parent', 'Student', 'School / College', 'Company'].map((w) => (
-          <button type="button" key={w} className={`filter-btn ${f.who === w ? 'on' : ''}`} style={{ height: 36, fontSize: 13.5 }} onClick={() => setF({ ...f, who: w })}>{w}</button>
+          <button type="button" key={w} className={`filter-btn ${f.who === w ? 'on' : ''}`} style={{ height: 34, fontSize: 14 }} onClick={() => setF({ ...f, who: w })}>{w}</button>
         ))}
       </div>
       <div className="field"><label htmlFor="n">Full name</label><input id="n" required value={f.name} onChange={set('name')} /></div>
@@ -43,7 +43,7 @@ export default function EnquiryForm({ program, title = 'Enquire', compact }) {
       {!compact && (
         <div className="field"><label htmlFor="m">Anything we should know?</label><textarea id="m" value={f.note} onChange={set('note')} placeholder="Age / grade, preferred timings, school name…" /></div>
       )}
-      <button className="btn btn-ember btn-block">Send enquiry <ArrowRight /></button>
+      <button className="btn btn-block">Send message</button>
     </form>
   )
 }

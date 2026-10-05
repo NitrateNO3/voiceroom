@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { Play, Pause, SkipBack, SkipForward } from 'lucide-react'
-import Art from '../components/Art'
 import PageHead from '../components/PageHead'
 import { EPISODES, VIDEOS, MEDIA } from '../data'
 import { useSEO } from '../lib/seo'
@@ -8,6 +7,7 @@ import { track } from '../lib/analytics'
 
 const BARS = Array.from({ length: 64 }, (_, i) => 18 + Math.abs(Math.sin(i * 1.7) * 60 + Math.cos(i * 0.6) * 22))
 
+// Stand-in player so the page can be reviewed before the Spotify feed exists.
 function Player() {
   const [ep, setEp] = useState(EPISODES[0])
   const [playing, setPlaying] = useState(false)
@@ -31,19 +31,20 @@ function Player() {
   return (
     <>
       <div className="player">
-        <Art src="/img/podcast-mic.jpg" shade="bottom" style={{ display: 'flex', alignItems: 'flex-end', padding: 20 }}>
-          <span className="display" style={{ fontSize: 36, lineHeight: 0.95 }}>The<br /><em style={{ color: 'var(--gold)' }}>Speak Easy</em></span>
-        </Art>
+        <div className="cover">
+          <img src="/img/podcast-mic.jpg" alt="" />
+          <span>The Speak Easy</span>
+        </div>
         <div>
-          <span className="label">Episode {ep.n}</span>
+          <p className="meta">Episode {ep.n} · {ep.guest}</p>
           <h3>{ep.title}</h3>
           <div className="player-ctrl">
-            <button aria-label="Back 15s" onClick={() => setPos(Math.max(0, pos - 15 / totalSec))}><SkipBack size={20} /></button>
+            <button aria-label="Back 15 seconds" onClick={() => setPos(Math.max(0, pos - 15 / totalSec))}><SkipBack size={18} /></button>
             <button className="play-btn" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>
               {playing ? <Pause /> : <Play />}
             </button>
-            <button aria-label="Forward 15s" onClick={() => setPos(Math.min(1, pos + 15 / totalSec))}><SkipForward size={20} /></button>
-            <div className="wave" onClick={(e) => { const r = e.currentTarget.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width) }} style={{ cursor: 'pointer' }}>
+            <button aria-label="Forward 15 seconds" onClick={() => setPos(Math.min(1, pos + 15 / totalSec))}><SkipForward size={18} /></button>
+            <div className="wave" onClick={(e) => { const r = e.currentTarget.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width) }}>
               {BARS.map((h, i) => <i key={i} className={i / BARS.length < pos ? 'on' : ''} style={{ height: `${h}%` }} />)}
             </div>
           </div>
@@ -52,14 +53,14 @@ function Player() {
             <span>{ep.length}</span>
           </div>
           <div className="platforms">
-            {Object.entries(MEDIA.platforms).map(([p, href]) => <a key={p} href={href} target="_blank" rel="noreferrer" className="chip">{p}</a>)}
+            {Object.entries(MEDIA.platforms).map(([p, href]) => <a key={p} href={href} target="_blank" rel="noreferrer">Listen on {p}</a>)}
           </div>
         </div>
       </div>
       <div>
         {EPISODES.map((e) => (
           <div key={e.n} className="ep-row">
-            <span className="n">EP {e.n}</span>
+            <span className="n">Ep. {e.n}</span>
             <div><b>{e.title}</b><small>{e.guest}</small></div>
             <span className="len">{e.length}</span>
             <button className="mini-play" onClick={() => choose(e)} aria-label={`Play episode ${e.n}`}>
@@ -72,46 +73,7 @@ function Player() {
   )
 }
 
-// Click-to-load YouTube embed: no third-party script until someone hits play.
-// Set `youtubeId` on a video to embed it; channel feed can be pulled via the
-// YouTube Data API once the channel ID is known.
-function Video({ v, big }) {
-  const [on, setOn] = useState(false)
-  return (
-    <button className="video" onClick={() => { setOn(true); track('video_play', { title: v.title }) }} style={big ? {} : { aspectRatio: 'auto', minHeight: 160 }}>
-      {on && v.youtubeId ? (
-        <iframe src={`https://www.youtube-nocookie.com/embed/${v.youtubeId}?autoplay=1`} title={v.title} allow="autoplay; encrypted-media" allowFullScreen />
-      ) : (
-        <>
-          <Art src={v.img} shade="bottom" />
-          <span className="yt"><Play fill="currentColor" /></span>
-          <span className="cap"><span style={{ fontSize: big ? 20 : 15 }}>{on ? 'Embed appears here once the YouTube ID is set' : v.title}</span><span>{v.length}</span></span>
-        </>
-      )}
-    </button>
-  )
-}
-
-function Videos() {
-  return (
-    <>
-      <div className="video-grid">
-        <Video v={VIDEOS[0]} big />
-        <div className="side">
-          <Video v={VIDEOS[1]} />
-          <Video v={VIDEOS[2]} />
-        </div>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 28, gap: 16, flexWrap: 'wrap' }}>
-        <p className="muted">New drills and event highlights every Thursday.</p>
-        <a href={MEDIA.youtubeChannel} target="_blank" rel="noreferrer" className="btn btn-sm">Subscribe on YouTube</a>
-      </div>
-    </>
-  )
-}
-
-// With a Spotify show ID set in data.js, the real Spotify player is embedded;
-// until then a simulated player stands in so the page can be reviewed.
+// With a Spotify show ID set in data.js, the real Spotify player is embedded.
 function Podcast() {
   if (MEDIA.spotifyShowId)
     return (
@@ -124,27 +86,44 @@ function Podcast() {
   return <Player />
 }
 
+// Click-to-load YouTube embed: no YouTube script loads until someone presses play.
+// Set `youtubeId` on a video in data.js to embed it.
+function Video({ v }) {
+  const [on, setOn] = useState(false)
+  return (
+    <div>
+      {on && v.youtubeId ? (
+        <div className="vid"><iframe src={`https://www.youtube-nocookie.com/embed/${v.youtubeId}?autoplay=1`} title={v.title} allow="autoplay; encrypted-media" allowFullScreen /></div>
+      ) : (
+        <button className="vid" onClick={() => { setOn(true); track('video_play', { title: v.title }) }} aria-label={`Play ${v.title}`}>
+          <img src={v.img} alt="" loading="lazy" />
+          <span className="yt"><Play fill="currentColor" /><span>{on ? 'Add the YouTube ID to play this' : `Play · ${v.length}`}</span></span>
+        </button>
+      )}
+      <h3>{v.title}</h3>
+    </div>
+  )
+}
+
 export default function PodcastPage() {
-  useSEO('Podcast & Videos', 'The Speak Easy podcast and Voiceroom YouTube videos: conversations and drills on public speaking and communication.')
+  useSEO('Podcast and videos', 'The Speak Easy podcast and Voiceroom YouTube videos on public speaking, debate and interviews.')
   return (
     <>
       <PageHead
-        label="Podcast & YouTube"
-        title={<>Press <em>play.</em></>}
-        lede="The Speak Easy podcast every fortnight, plus short drills and stage highlights on YouTube. Learn on the commute, the walk, the school run."
-        img="/img/studio-mic.jpg"
+        title="Podcast and videos"
+        lede="The Speak Easy comes out every other Thursday. Short practice videos go up on YouTube most weeks."
       />
       <section className="wrap" id="podcast">
-        <div className="section-head" style={{ marginBottom: 32 }}>
-          <div><span className="label label-dot">The Speak Easy · podcast</span><h2 style={{ marginTop: 6 }}>Listen <em>in.</em></h2></div>
-        </div>
         <Podcast />
       </section>
       <section className="section wrap" id="videos">
-        <div className="section-head" style={{ marginBottom: 32 }}>
-          <div><span className="label label-dot">Voiceroom on YouTube</span><h2 style={{ marginTop: 6 }}>Watch <em>&amp; practise.</em></h2></div>
+        <div className="section-head">
+          <h2>On YouTube</h2>
+          <a href={MEDIA.youtubeChannel} target="_blank" rel="noreferrer" className="text-link">Subscribe to the channel</a>
         </div>
-        <Videos />
+        <div className="video-grid">
+          {VIDEOS.map((v) => <Video key={v.title} v={v} />)}
+        </div>
       </section>
     </>
   )

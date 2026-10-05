@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { addLead } from '../lib/store'
 import { track } from '../lib/analytics'
 
@@ -18,16 +18,15 @@ export default function Newsletter({ source = 'Footer' }) {
   return (
     <div className="news-card" id="newsletter">
       <div>
-        <span className="label label-dot">The Sunday Letter</span>
-        <h3>One idea a week to <em>speak better.</em></h3>
-        <p>Short drills, new articles and podcast drops. Free, no spam.</p>
+        <h3>The Sunday Letter</h3>
+        <p>One short speaking exercise every Sunday, plus new articles and episodes. Unsubscribe whenever you like.</p>
       </div>
       {done ? (
-        <p className="news-done"><Check size={20} color="var(--gold)" /> You’re in. First letter lands Sunday.</p>
+        <p className="news-done"><Check size={20} color="var(--marker)" /> Done. Your first letter arrives this Sunday.</p>
       ) : (
         <form className="news-form" onSubmit={submit}>
-          <input type="email" required placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="Email address" />
-          <button className="btn btn-sm btn-ember" type="submit">Subscribe <ArrowRight /></button>
+          <input type="email" required placeholder="Your email" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="Email address" />
+          <button className="btn btn-light" type="submit">Subscribe</button>
         </form>
       )}
     </div>

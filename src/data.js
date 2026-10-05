@@ -3,12 +3,12 @@
 export const POSTS = [
   {
     slug: 'nervous-is-not-a-flaw',
-    title: 'Nervous is not a flaw. It is fuel you haven’t learned to use.',
+    title: 'Nerves aren’t a flaw. You just haven’t put them to work yet.',
     category: 'Public Speaking',
     read: '6 min',
     date: '2026-09-28',
     author: 'Aanya Kapoor',
-    excerpt: 'The racing heart before a talk is the same physiology as excitement. Here is how our coaches teach students to re-label it.',
+    excerpt: 'A racing heart before a talk feels a lot like excitement, because it almost is. Here’s how we teach students to use it.',
   },
   {
     slug: 'three-sentence-rebuttal',
@@ -17,7 +17,7 @@ export const POSTS = [
     read: '4 min',
     date: '2026-09-14',
     author: 'Rohan Mehta',
-    excerpt: 'Name it, break it, weigh it. A simple frame that turns panicked responses into clean clash.',
+    excerpt: 'Say what they claimed, show where it breaks, then say why it matters. A three-step answer you can build in under a minute.',
   },
   {
     slug: 'parents-guide-to-mun',
@@ -35,16 +35,16 @@ export const POSTS = [
     read: '3 min',
     date: '2026-08-12',
     author: 'Aanya Kapoor',
-    excerpt: 'Silence feels like forever to the speaker and like confidence to the audience.',
+    excerpt: 'Two seconds of silence feels endless to you and calm to everyone listening.',
   },
   {
     slug: 'interview-tell-me-about-yourself',
-    title: '“Tell me about yourself” — a 60-second template',
+    title: 'How to answer “Tell me about yourself” in 60 seconds',
     category: 'Interviews',
     read: '5 min',
     date: '2026-07-25',
     author: 'Kabir Sethi',
-    excerpt: 'Present, past, future. The structure we drill with every placement batch.',
+    excerpt: 'Start with what you do now, add one thing from before, finish with what you want next. The order we practise with every placement batch.',
   },
 ]
 
@@ -63,27 +63,26 @@ export const MEDIA = {
 
 export const EPISODES = [
   { n: 24, title: 'Why kids stop raising their hands', guest: 'with Dr. Meera Iyer, child psychologist', length: '42:10' },
-  { n: 23, title: 'Debating as a team sport', guest: 'with the Season 2 champions', length: '35:48' },
-  { n: 22, title: 'Stage fright never fully leaves — and that’s fine', guest: 'with Aanya Kapoor', length: '28:05' },
+  { n: 23, title: 'Debating as a team sport', guest: 'with three school debate captains', length: '35:48' },
+  { n: 22, title: 'Stage fright never fully leaves, and that’s fine', guest: 'with Aanya Kapoor', length: '28:05' },
   { n: 21, title: 'What recruiters actually listen for', guest: 'with Kabir Sethi', length: '39:31' },
 ]
 
 export const VIDEOS = [
-  { title: 'The 2-minute warm-up before any talk', length: '2:14', tone: 'ember', img: '/img/presentation-dark.jpg' },
-  { title: 'Rebuttal drill: live with Season 3 teams', length: '11:40', tone: 'ink', img: '/img/speaker-hall.jpg' },
-  { title: 'Open Mic Night — best of September', length: '8:22', tone: 'sun', img: '/img/mic-teal.jpg' },
+  { title: 'The 2-minute warm-up before any talk', length: '2:14', img: '/img/presentation-dark.jpg' },
+  { title: 'Rebuttal practice with a Saturday batch', length: '11:40', img: '/img/speaker-hall.jpg' },
+  { title: 'Five students, five two-minute talks', length: '8:22', img: '/img/mic-teal.jpg' },
 ]
 
 export const TEAM = [
-  { name: 'Aanya Kapoor', img: '/img/team-aanya.jpg', role: 'Founder & Head Coach', note: 'Former national debate champion. Has judged 200+ rounds.', tone: 'ember' },
-  { name: 'Rohan Mehta', img: '/img/team-rohan.jpg', role: 'Debate Director', note: 'Coaches debate teams from first motion to tournament finals.', tone: 'ink' },
-  { name: 'Ishita Rao', img: '/img/team-ishita.jpg', role: 'Curriculum Lead', note: 'Designs every syllabus. Secretly loves rubrics.', tone: 'moss' },
-  { name: 'Kabir Sethi', img: '/img/team-kabir.jpg', role: 'Careers Coach', note: 'Ex-HR lead. Knows exactly what interviewers listen for.', tone: 'sun' },
-  { name: 'Neha Batra', img: '/img/team-neha.jpg', role: 'Voice & Theatre Coach', note: 'Fifteen years on stage. Teaches breath before words.', tone: 'ember' },
-  { name: 'Dev Malhotra', img: '/img/team-dev.jpg', role: 'Partnerships', note: 'The person schools talk to first.', tone: 'ink' },
+  { name: 'Aanya Kapoor', role: 'Founder & Head Coach', note: 'Former national-level debater. Started Voiceroom in 2019.' },
+  { name: 'Rohan Mehta', role: 'Debate Director', note: 'Coaches the debate batches and judges school tournaments.' },
+  { name: 'Ishita Rao', role: 'Curriculum Lead', note: 'Plans what each batch covers, week by week.' },
+  { name: 'Kabir Sethi', role: 'Careers Coach', note: 'Ex-HR lead. Knows exactly what interviewers listen for.' },
+  { name: 'Neha Batra', role: 'Voice & Theatre Coach', note: 'Theatre actor. Runs the voice and breathing sessions.' },
+  { name: 'Dev Malhotra', role: 'Partnerships', note: 'Looks after schools that run Voiceroom clubs.' },
 ]
 
-export const PARTNERS = ['Modern School', 'DPS R.K. Puram', 'Ashoka University', 'Shri Ram College', 'The Heritage School', 'Vasant Valley', 'IIT Delhi', 'Sanskriti School']
 
 // Article cover photos, looked up by slug.
 const POST_IMG = {
@@ -93,7 +92,7 @@ const POST_IMG = {
   'pause-is-power': 'mic-teal',
   'interview-tell-me-about-yourself': 'friends-laptop',
 }
-const POST_FALLBACK = ['notes', 'notebook', 'kids-writing', 'classroom']
+const POST_FALLBACK = ['notes', 'notebook', 'students-class', 'college-audience']
 export const postImg = (p, i = 0) => p.img || `/img/${POST_IMG[p.slug] || POST_FALLBACK[i % POST_FALLBACK.length]}.jpg`
 
 export const formatDate = (iso, opts = { day: 'numeric', month: 'short', year: 'numeric' }) =>
