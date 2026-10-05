@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, ArrowRight } from 'lucide-react'
+import { Menu, X, Phone } from 'lucide-react'
+import { openCallback } from './PhoneCapture'
 
 export const LINKS = [
   ['/about', 'About'],
-  ['/team', 'Team'],
-  ['/programs', 'Programs'],
-  ['/corporate', 'Corporate'],
-  ['/events', 'Events'],
-  ['/learn', 'Learn'],
+  ['/learn', 'Articles'],
+  ['/podcast', 'Podcast & Videos'],
   ['/contact', 'Contact'],
 ]
 
@@ -22,9 +20,9 @@ export function Logo({ to = '/' }) {
 }
 
 const NEWS = [
-  <>Inter-School Debate League · Season 3 opens 2 Nov — <Link to="/events/debate-league-s3">register your team</Link></>,
-  <>Open Mic Night · 18 Oct · Hauz Khas — <Link to="/events/open-mic-october">19 seats left</Link></>,
-  <>New: corporate communication workshops for teams — <Link to="/corporate">see formats</Link></>,
+  <>New episode · Why kids stop raising their hands — <Link to="/podcast">listen now</Link></>,
+  <>Fresh on the blog · The three-sentence rebuttal — <Link to="/learn/three-sentence-rebuttal">read it</Link></>,
+  <>The Sunday Letter · one speaking idea a week — <a href="#newsletter">subscribe free</a></>,
 ]
 
 export default function Nav() {
@@ -64,7 +62,7 @@ export default function Nav() {
             {LINKS.map(([to, label]) => <NavLink key={to} to={to}>{label}</NavLink>)}
           </nav>
           <div className="nav-cta">
-            <Link to="/events" className="btn btn-sm btn-ember">Book an event <ArrowRight /></Link>
+            <button className="btn btn-sm btn-ember" onClick={openCallback}><Phone /> Free callback</button>
             <button className="burger" onClick={() => setOpen(true)} aria-label="Open menu"><Menu /></button>
           </div>
         </div>
@@ -80,7 +78,7 @@ export default function Nav() {
               <Link key={to} to={to} style={{ animationDelay: `${60 + i * 45}ms` }}>{label}<small>0{i + 1}</small></Link>
             ))}
           </nav>
-          <Link to="/events" className="btn btn-block btn-ember">Book an event <ArrowRight /></Link>
+          <button className="btn btn-block btn-ember" onClick={() => { setOpen(false); openCallback() }}><Phone /> Get a free callback</button>
         </div>
       )}
     </>

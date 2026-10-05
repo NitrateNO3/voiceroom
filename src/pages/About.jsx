@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Phone } from 'lucide-react'
+import { openCallback } from '../components/PhoneCapture'
 import { TEAM } from '../data'
 import PageHead from '../components/PageHead'
 import Reveal from '../components/Reveal'
@@ -62,18 +63,45 @@ export default function About() {
             <li><b>2019</b><p>Weekend debate club with 9 students in Aanya’s living room.</p></li>
             <li><b>2021</b><p>Went online through the pandemic; reached students in 14 cities.</p></li>
             <li><b>2023</b><p>First school partnerships. Launched the Inter-School Debate League.</p></li>
-            <li><b>2025</b><p>Opened the Gurugram studio. Started corporate workshops.</p></li>
-            <li><b>2026</b><p>12,000+ students coached. Season 3 of the league kicks off.</p></li>
+            <li><b>2025</b><p>Opened the Gurugram studio. Launched The Speak Easy podcast.</p></li>
+            <li><b>2026</b><p>12,000+ students coached. A free library of articles, episodes and videos.</p></li>
           </ol>
         </div>
       </section>
 
-      <section className="section wrap" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="faces" style={{ marginBottom: 32 }}>
-          {TEAM.map((m) => <img key={m.name} src={m.img} alt="" style={{ width: 64, height: 64, boxShadow: '0 0 0 3px var(--paper)' }} />)}
+      <section className="section wrap">
+        <div className="section-head">
+          <div>
+            <span className="label">The team</span>
+            <h2>The people <em>behind the mic.</em></h2>
+          </div>
+          <p className="muted" style={{ maxWidth: '40ch' }}>National debaters, theatre actors, teachers and recruiters. Every coach is trained in the Miyagi method before they lead a batch.</p>
         </div>
-        <h2>Meet the people <em>behind the mic.</em></h2>
-        <Link to="/team" className="btn btn-ember btn-lg" style={{ marginTop: 36 }}>Meet the team <ArrowRight /></Link>
+        <div className="team-grid">
+          {TEAM.map((m, i) => (
+            <Reveal key={m.name} className="member" delay={(i % 3) * 80}>
+              <div className="member-photo">
+                <img src={m.img} alt={m.name} loading="lazy" />
+                <p className="note">{m.note}</p>
+              </div>
+              <h3>{m.name}</h3>
+              <span className="label">{m.role}</span>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="dark section">
+        <div className="wrap section-head" style={{ marginBottom: 0 }}>
+          <div>
+            <span className="label">Talk to a coach</span>
+            <h2>Ready when <em>you are.</em></h2>
+          </div>
+          <div className="hero-ctas" style={{ marginTop: 0 }}>
+            <button className="btn btn-ember btn-lg" onClick={openCallback}><Phone /> Get a free callback</button>
+            <Link to="/contact" className="btn btn-glass btn-lg">Contact us <ArrowRight /></Link>
+          </div>
+        </div>
       </section>
     </>
   )

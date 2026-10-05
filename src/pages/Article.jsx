@@ -1,17 +1,25 @@
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import Art from '../components/Art'
 import NotFound from './NotFound'
-import { formatDate, postImg, TEAM } from '../data'
-import { useStore } from '../lib/store'
+import { POSTS as posts, formatDate, postImg, TEAM } from '../data'
 import { useSEO } from '../lib/seo'
 
 export default function Article() {
   const { slug } = useParams()
-  const posts = useStore((s) => s.posts)
   const post = posts.find((p) => p.slug === slug)
-  useSEO(post?.title, post?.excerpt)
+  useSEO(post?.title, post?.excerpt, post && {
+    image: postImg(post, posts.indexOf(post)),
+    type: 'article',
+    jsonLd: {
+      '@context': 'https://schema.org', '@type': 'Article',
+      headline: post.title, description: post.excerpt, datePublished: post.date,
+      author: { '@type': 'Person', name: post.author },
+      publisher: { '@type': 'Organization', name: 'Miyagi' },
+    },
+  })
   if (!post) return <NotFound />
-  const next = posts.filter((p) => p.published && p !== post).slice(0, 2)
+  const next = posts.filter((p) => p !== post).slice(0, 2)
   const paras = post.body
     ? post.body.split(/\n\s*\n/)
     : [
@@ -46,8 +54,9 @@ export default function Article() {
         <hr className="rule" style={{ margin: '56px 0 32px' }} />
         <span className="label">Read next</span>
         {next.map((p) => (
-          <Link key={p.slug} to={`/learn/${p.slug}`} className="post-item" style={{ gridTemplateColumns: '1fr' }}>
-            <div><span className="label">{p.category}</span><h3>{p.title}</h3></div>
+          <Link key={p.slug} to={`/learn/${p.slug}`} className="post-item">
+            <div><span className="label">{p.category} · {p.read}</span><h3>{p.title}</h3><p>{p.excerpt}</p></div>
+            <Art src={postImg(p, posts.indexOf(p))} />
           </Link>
         ))}
       </div>

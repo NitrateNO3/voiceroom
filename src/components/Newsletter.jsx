@@ -16,7 +16,7 @@ export default function Newsletter({ source = 'Footer' }) {
   }
 
   return (
-    <section className="dark section-tight news-section">
+    <section className="dark section-tight news-section" id="newsletter">
       <div className="wrap newsletter">
         <div>
           <span className="label label-dot">The Sunday Letter</span>
@@ -24,7 +24,7 @@ export default function Newsletter({ source = 'Footer' }) {
         </div>
         <div>
           <p className="muted" style={{ marginBottom: 20 }}>
-            Short drills, new articles, podcast drops and first dibs on event seats. Free, no spam, unsubscribe anytime.
+            Short drills, new articles and podcast drops, every Sunday morning. Free, no spam, unsubscribe anytime.
           </p>
           {done ? (
             <p style={{ display: 'flex', gap: 10, alignItems: 'center', fontWeight: 600 }}>

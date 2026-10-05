@@ -20,21 +20,19 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <h4>Learn</h4>
+              <h4>Explore</h4>
               <ul>
-                <li><Link to="/programs">All programs</Link></li>
-                <li><Link to="/programs?for=Schools">For schools</Link></li>
-                <li><Link to="/programs?for=Colleges">For colleges</Link></li>
-                <li><Link to="/corporate">For teams</Link></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
             <div>
-              <h4>Miyagi</h4>
+              <h4>Learn free</h4>
               <ul>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/team">Team</Link></li>
-                <li><Link to="/events">Events</Link></li>
-                <li><Link to="/learn">Articles & podcast</Link></li>
+                <li><Link to="/learn">Articles</Link></li>
+                <li><Link to="/podcast">The Speak Easy podcast</Link></li>
+                <li><Link to="/podcast#videos">YouTube videos</Link></li>
               </ul>
             </div>
             <div>
@@ -42,15 +40,14 @@ export default function Footer() {
               <ul>
                 <li><a href="tel:+919876543210">+91 98765 43210</a></li>
                 <li><a href="mailto:hello@miyagi.in">hello@miyagi.in</a></li>
-                <li><Link to="/contact">Contact form</Link></li>
-                <li><Link to="/admin">Team login</Link></li>
+                <li><a href="https://wa.me/919876543210">WhatsApp</a></li>
               </ul>
             </div>
           </div>
           <div className="footer-word" aria-hidden="true">miyagi<span>.</span></div>
           <div className="footer-base">
             <span>© 2026 Miyagi Learning Pvt. Ltd.</span>
-            <span>Privacy · Terms · Refunds</span>
+            <span>Privacy · Terms</span>
           </div>
         </div>
       </footer>

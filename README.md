@@ -1,21 +1,21 @@
 # Miyagi — website prototype
 
-React + Vite prototype covering the site map: Home, About, Team, Programs (audience filter → 8 program pages → enquiry form), Corporate, Events (upcoming / past gallery → event page → Razorpay-style checkout → confirmation), Learn (articles, podcast, YouTube), Contact, and a client-editable admin at `/admin`.
+A simple 5-page site: **Home, About, Articles (`/learn`), Podcast & Videos (`/podcast`), Contact** — plus individual article pages at `/learn/:slug`. Mobile-first and responsive throughout.
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
 ```
 
-## What's real vs. mocked
-| Area | Prototype behaviour | To go live |
+## Features and how to go live
+| Feature | Where | To go live |
 |---|---|---|
-| Data | Saved in the browser's localStorage (`src/lib/store.js`). "Reset demo data" is in the admin sidebar | Backend API + database |
-| Payments | Mock payment sheet in `src/pages/EventDetail.jsx` | Razorpay Orders API + server-side signature check |
-| Confirmation email | Shown on screen only | Transactional email (e.g. Resend / SES) |
-| Admin login | Any password works | Real auth |
-| Phone capture | Popup after 3.5s; dismissing it leaves a "free callback" pill. Leads show up in Admin → Leads | Push to CRM / WhatsApp |
-| Analytics | `src/lib/analytics.js`. Logs events to the console; set `VITE_GA_ID` to send them to GA4 | Add the GA4 ID |
-| SEO | Per-page titles and descriptions, OG tags, `robots.txt`, `sitemap.xml`, GSC meta tag in `index.html` | Pre-render pages, real domain, GSC token |
-| YouTube / podcast | Click-to-load embeds and a simulated player | Add video IDs and podcast RSS |
-| Images | Unsplash stock photos in `public/img/` (free licence), mapped in `src/data.js` | Swap in Miyagi's own photography, keeping the same file names or paths |
+| Phone capture on landing | `src/components/PhoneCapture.jsx` — popup after 3.5s; dismissing leaves a "free callback" pill. Also inline on Home and behind every "Free callback" button | Send leads to a CRM / Google Sheet / WhatsApp (currently saved in the browser and sent to GA as `phone_captured`) |
+| Newsletter / email capture | `src/components/Newsletter.jsx`, shown on every page | Connect Mailchimp / ConvertKit / Brevo |
+| Articles / blog | Content in `src/data.js` (`POSTS`), list at `/learn`, article pages at `/learn/:slug` | Move to a CMS (Sanity, Contentful, Notion) or Markdown files |
+| Podcast integration | `/podcast` — set `MEDIA.spotifyShowId` in `src/data.js` to embed the real Spotify player (demo player until then) | Add the show ID and platform links |
+| YouTube integration | Add `youtubeId` to each entry in `VIDEOS` (`src/data.js`); videos load only when clicked | Add video IDs and the channel URL |
+| Google Analytics 4 | `src/lib/analytics.js` — page views + events (phone capture, newsletter, plays). Logs to console until `VITE_GA_ID` is set in `.env` | Add the GA4 measurement ID |
+| Google Search Console | Verification meta tag in `index.html`; `public/sitemap.xml` and `robots.txt` | Paste the GSC token, submit the sitemap |
+| Basic SEO | `src/lib/seo.js` — per-page title, description, Open Graph/Twitter tags, canonical URL; Article schema on posts; organisation schema in `index.html` | Real domain; pre-render pages for crawlers |
+| Images | Unsplash stock photos in `public/img/` (free licence) | Swap in Miyagi's own photography with the same file names |
